@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema(
   {
-    guestId: {
-      type: String,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
     courses: [
@@ -20,7 +20,7 @@ const cartSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Cart = mongoose.model("Cart", cartSchema);

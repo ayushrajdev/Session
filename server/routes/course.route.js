@@ -1,23 +1,23 @@
 import express from "express";
-import Course from "../models/Course.js";
-import Session from "../models/Session.js";
+import Course from "../models/course.model.js";
+import Session from "../models/session.model.js";
 
 const router = express.Router();
 
-// GET all courses
+// GET all courses✅
 router.get("/", async (req, res) => {
+  
   try {
-    const {sessionId} = req.cookies;
-    if (!sessionId) {
+    const { sessionId } = req.signedCookies;
+    var session = await Session.findById(sessionId);
+    if (!sessionId || !session) {
       const session = new Session();
       await session.save();
       res.cookie("sessionId", session.id, {
         signed: true,
       });
     }
-    console.log(sessionId);
-    const courses = await Course.find();
-
+    const courses = await Course.find().lean();
     res.json(courses);
   } catch (error) {
     res.status(500).json({ message: error.message });

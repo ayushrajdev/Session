@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { connectDB } from "./config/db.js";
-import courseRoutes from "./routes/courses.js";
-import cartRoutes from "./routes/cart.js";
-import authRoutes from "./routes/auth.js";
+import { connectDB } from "./config/db.config.js";
+import courseRoutes from "./routes/course.route.js";
+import cartRoutes from "./routes/cart.route.js";
+import authRoutes from "./routes/auth.route.js";
 import { seedDatabase } from "./seed.js";
 import cookieParser from "cookie-parser";
 
